@@ -1,0 +1,17 @@
+{
+  "name": "gewllery.in",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "client/*",
+    "server/services/*",
+    "server/packages/*",
+    "server/gateway"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
