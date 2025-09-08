@@ -18,6 +18,7 @@ const correlationId = (req, res, next) => {
   req.cid =
     req.header("x-correlation-id") ||
     Math.random().toString().slice(2) + Date.now().toString();
+<<<<<<< HEAD
 
     console.log(req.cid);
     console.log('hello');
@@ -25,6 +26,9 @@ const correlationId = (req, res, next) => {
     console.log('hello');
     console.log('hello');
     
+=======
+    console.log(req.cid);
+>>>>>>> master
   next();
 };
 

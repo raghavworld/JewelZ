@@ -1,37 +1,19 @@
-import { Forbidden } from "../../packages/shared/errors.js";
+import dotenv from "dotenv";
 import express from "express";
 import { correlationId, errorhandler } from "../../packages/shared/http.js";
-
+import { dbConnect } from "./model/dbConnect.js";
+import userRouter from "./routes/userRouter.js";
+import { userRegister } from "./controller/userCtrl.js";
+dotenv.config();
+const PORT = process.env.PORT || 4002;
 const app = express();
 app.use(express.json());
 app.use(correlationId);
 
-const PORT = process.env.PORT || 4002;
-
-app.post("/login", async (req, res, next) => {
-  const user = {
-    name: "raman",
-    password: "raman",
-  };
-
-  try {
-    if (req.body.name === user.name && req.body.password === user.password) {
-      console.log({
-        message: "success",
-      });
-
-      res.status(200).json({
-        message: "success",
-      });
-    } else {
-      next(Forbidden);
-    }
-  } catch (e) {
-    next(e);
-  }
-});
+app.use("/jewelz/api/v1/user", userRouter);
 
 app.use(errorhandler);
+await dbConnect();
 app.listen(PORT, () => {
-  console.log(`serever Running successfully on ${PORT} `);
+  console.log(`server Running successfully on ${PORT} `);
 });
