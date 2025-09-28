@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
-export const userModel = mongoose.Model(
-  {
-    name: String,
-    passwordHash: String,
-    name: String,
-    role: { type: String, default: "user" },
-    resetToken: String,
-    resetTokenExp: Date,
-    refreshVersion: { type: Number, default: 0 },
-  },
-  {
-    timestamps: true,
-  }
+
+export const userModel = mongoose.model(
+  "users",
+  new mongoose.Schema(
+    {
+      email: { type: String, required: true },
+      passwordHash: { type: String, required: true },
+      name: String,
+      role: { type: String, default: "user" },
+      resetToken: String,
+      resetTokenExp: String,
+      refreshVersion: { type: Number, default: 0 },
+    },
+    { timestamps: true }
+  )
 );

@@ -1,7 +1,7 @@
 class AppError extends Error {
   constructor(statusCode, message, details) {
     super(message); //send message to
-    this.statusCode = statusCode || 500;
+    this.statusCode = statusCode || '500';
     this.isOperational = true;
   }
 }

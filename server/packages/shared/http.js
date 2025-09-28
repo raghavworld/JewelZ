@@ -18,25 +18,18 @@ const correlationId = (req, res, next) => {
   req.cid =
     req.header("x-correlation-id") ||
     Math.random().toString().slice(2) + Date.now().toString();
-<<<<<<< HEAD
-
-    console.log(req.cid);
-    console.log('hello');
-    console.log('hello');
-    console.log('hello');
-    console.log('hello');
-    
-=======
-    console.log(req.cid);
->>>>>>> master
   next();
 };
 
 const errorhandler = (err, req, res, next) => {
-  const status = err.statusCode || "500";
+  const status = err.statusCode || 500;
   const message = err.message || "Server_Error";
-  logger.error({ cid: cid, message, status, details: err.details });
-  res.status(status).json({ error: { message, status, details: err.details } });
+  const cid = req?.cid;
+  console.log({ cid: cid, message, status });
+  res
+    .status(status)
+    .json({ cid, error: { message, status }, stack: err.stack });
 };
 
 export { logger, correlationId, errorhandler };
+  
