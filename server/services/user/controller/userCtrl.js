@@ -22,11 +22,11 @@ export const userRegister = async (req, res, next) => {
     if (!user) return Conflict("cannot add data to Db");
 
     const access = signAccess(
-      { sub: user.id, role: user.role },
+      { id: user.id, role: user.role },
       process.env.ACCESS_SECRET
     );
     const refresh = signRefresh(
-      { sub: user.id, role: user.role },
+      { id: user.id, role: user.role },
       process.env.REFRESH_SECRET
     );
 
@@ -87,10 +87,12 @@ export const userLogin = async (req, res, next) => {
 };
 
 export const userProfile = async (req, res, next) => {
+  console.log("incoming request: ", req.user);
+
   try {
-    const { role, sub } = req.user;
-    if (!role || !sub) return BadRequest();
-    const user = await userModel.findById(sub);
+    const { role, id } = req.user;
+    if (!role || !id) return next(BadRequest());
+    const user = await userModel.findById(id);
 
     res.status(201).json({
       id: user.id,
