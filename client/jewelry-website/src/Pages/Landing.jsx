@@ -8,12 +8,9 @@ const Landing = () => {
   return (
     <>
       <div className="grid  ">
-       
-           <TopBanner/>
-            <MostLoved/>
-
-           
-           </div>
+        <TopBanner />
+        <MostLoved />
+      </div>
     </>
   );
 };

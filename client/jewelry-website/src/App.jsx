@@ -6,17 +6,25 @@ import DraggableSidebar from "./smallComponents/DraggableSidebar";
 import Sidebar from "./smallComponents/Sidebar";
 import TopTicker from "./smallComponents/TopTicker";
 import RenderMenuBar from "./smallComponents/RenderMenuBar";
+<<<<<<< Updated upstream
+import TodosPage from './Pages/TodosPage'
+=======
+import TodosPage from "./Pages/TodosPage";
 
+>>>>>>> Stashed changes
 const App = () => {
- 
-
   return (
     <div>
       <BrowserRouter>
         <TopTicker />
-       <RenderMenuBar/>
+        <RenderMenuBar />
         <Routes>
           <Route path="/" element={<Landing />} />
+<<<<<<< Updated upstream
+          <Route path="/todos" element={<TodosPage />} />
+=======
+          <Route path="/todos" element={< TodosPage />} />
+>>>>>>> Stashed changes
         </Routes>
       </BrowserRouter>
     </div>
